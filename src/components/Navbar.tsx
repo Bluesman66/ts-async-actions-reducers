@@ -2,16 +2,18 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import { Layout, Menu, Row } from "antd";
 import { RouteNames } from "../router";
+import { useTypedSelector } from "../hooks/useTypedSelector";
 
 interface Props {}
 
 export const Navbar: React.FC = (props: Props) => {
   const router = useHistory();
-  const auth = true;
+  const { isAuth } = useTypedSelector((state) => state.auth);
+
   return (
     <Layout.Header>
       <Row justify="end">
-        {auth ? (
+        {isAuth ? (
           <>
             <div style={{ color: "white" }}>Brenda</div>
             <Menu theme="dark" mode="horizontal" selectable={false}>
