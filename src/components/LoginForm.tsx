@@ -1,12 +1,16 @@
 import React from "react";
 import { Button, Form, Input } from "antd";
 import { rules } from "../utils/rules";
+import { useDispatch } from "react-redux";
+import { AuthActionCreators } from "../store/reducers/auth/action-creators";
 
 interface Props {}
 
 export const LoginForm: React.FC = (props: Props) => {
+  const dispatch = useDispatch();
+
   const submit = () => {
-    console.log("submit");
+    dispatch(AuthActionCreators.login("user", "123"));
   };
 
   return (
