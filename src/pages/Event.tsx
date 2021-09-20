@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button, Layout, Modal, Row } from "antd";
 import { EventCalendar } from "../components/EventCalendar";
+import { EventForm } from "../components/EventForm";
 
 interface Props {}
 
@@ -13,7 +14,9 @@ export const Event: React.FC = (props: Props) => {
       <Row justify="center">
         <Button onClick={() => setModalVisible(true)}>Add event</Button>
       </Row>
-      <Modal title="Add event" visible={modalVisible} footer={null} onCancel={() => setModalVisible(false)}></Modal>
+      <Modal title="Add event" visible={modalVisible} footer={null} onCancel={() => setModalVisible(false)}>
+        <EventForm />
+      </Modal>
     </Layout>
   );
 };
