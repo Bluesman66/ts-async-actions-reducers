@@ -1,7 +1,7 @@
 import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import { useTypedSelector } from "../hooks/useTypedSelector";
-import { privateRoutes, publicRoutes } from "../router";
+import { privateRoutes, publicRoutes, RouteNames } from "../router";
 
 interface Props {}
 
@@ -13,12 +13,14 @@ export const AppRouter: React.FC = (props: Props) => {
       {privateRoutes.map((route) => (
         <Route path={route.path} exact={route.exact} component={route.component} key={route.path} />
       ))}
+      <Redirect to={RouteNames.EVENT} />
     </Switch>
   ) : (
     <Switch>
       {publicRoutes.map((route) => (
         <Route path={route.path} exact={route.exact} component={route.component} key={route.path} />
       ))}
+      <Redirect to={RouteNames.LOGIN} />
     </Switch>
   );
 };
