@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Form, Input } from "antd";
+import { Button, Form, Input, Row } from "antd";
 import { rules } from "../utils/rules";
 import { useTypedSelector } from "../hooks/useTypedSelector";
 import { useActions } from "../hooks/useActions";
@@ -25,11 +25,13 @@ export const LoginForm: React.FC = (props: Props) => {
       <Form.Item label="Password" name="password" rules={[rules.required("Please input your password!")]}>
         <Input type={"password"} value={password} onChange={(e) => setPassword(e.target.value)} />
       </Form.Item>
-      <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-        <Button type="primary" htmlType="submit" loading={isLoading}>
-          Submit
-        </Button>
-      </Form.Item>
+      <Row justify="end">
+        <Form.Item>
+          <Button type="primary" htmlType="submit" loading={isLoading}>
+            Submit
+          </Button>
+        </Form.Item>
+      </Row>
     </Form>
   );
 };
