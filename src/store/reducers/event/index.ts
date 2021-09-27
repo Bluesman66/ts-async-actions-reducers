@@ -1,16 +1,19 @@
-const initState = {};
+import { EventAction, EventActionEnum, EventState } from "./types";
 
-const eventReducer = (state = initState, action): AuthState => {
+const initState = {
+  guests: [],
+  events: [],
+};
+
+const eventReducer = (state = initState, action: EventAction): EventState => {
   switch (action.type) {
-    case AuthActionEnum.SET_AUTH:
-      return { ...state, isAuth: action.payload, isLoading: false };
-    case AuthActionEnum.SET_USER:
-      return { ...state, user: action.payload };
-    case AuthActionEnum.SET_IS_LOADING:
-      return { ...state, isLoading: action.payload };
-    case AuthActionEnum.SET_ERROR:
-      return { ...state, error: action.payload, isLoading: false };
+    case EventActionEnum.SET_GUESTS:
+      return { ...state, guests: action.payload };
+    case EventActionEnum.SET_EVENTS:
+      return { ...state, events: action.payload };
     default:
       return state;
   }
 };
+
+export default eventReducer;
