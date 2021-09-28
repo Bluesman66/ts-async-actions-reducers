@@ -20,4 +20,23 @@ export const EventActionCreators = {
       dispatch(EventActionCreators.setGuests(response.data));
     } catch (error) {}
   },
+
+  createEvent: (event: IEvent) => async (dispatch: AppDispatch) => {
+    try {
+      const events = localStorage.getItem("event") || "[]";
+      const json = JSON.parse(events) as IEvent[];
+      json.push(event);
+      dispatch(EventActionCreators.setEvents(json));
+      localStorage.setItem("event", JSON.stringify(json));
+    } catch (error) {}
+  },
+
+  fetchEvents: (username: string) => async (dispatch: AppDispatch) => {
+    try {
+      const events = localStorage.getItem("event") || "[]";
+      const json = JSON.parse(events) as IEvent[];
+      const currentUserEvents = json.filter((event) => event.author === username || event.guest === username);
+      dispatch(EventActionCreators.setEvents(currentUserEvents));
+    } catch (error) {}
+  },
 };
